@@ -48,5 +48,24 @@
                 {{ __('Register') }}
             </x-primary-button>
         </div>
+
+        
     </form>
+    
+    <div class="my-7 flex items-center space-x-3">
+        <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+        <p class="text-tiny+">or register with</p>
+        <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+      </div>
+
+      {{--Other signup options--}}
+      <div class="flex space-x-4">
+
+        {{--Google--}}
+        <button style="display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 0.5rem 1rem; border: 1px solid  #1f2937; background-color: #1f2937; color: white; font-size: 1rem; font-weight: medium; text-align: center; cursor: pointer; gap: 12px; border-radius: 0.375rem;" onmouseover="this.style.backgroundColor='#333333'" onfocus="this.style.backgroundColor='#333333'" onactive="this.style.backgroundColor='#1a1a1a'">
+            <img style="height: 24px;" src="backend/images/logos/google.svg" alt="logo">
+            <span>Register with Google</span>
+          </button>
+
+      </div>
 </x-guest-layout>
