@@ -58,7 +58,9 @@ $popularQuestions = [
                     </svg>
                   </div>
                 </div>
-                <div :class="isShowPopper &amp;&amp; 'show'" class="popper-root" x-ref="popperRoot">
+                
+                <div :class="isShowPopper && 'show'" class="popper-root" x-ref="popperRoot">
+                  
                   <div class="popper-box flex max-h-[calc(100vh-6rem)] w-80 flex-col rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-800 dark:bg-navy-700 dark:shadow-soft-dark">
                     <div x-data="{activeTab:'tabAll'}" class="is-scrollbar-hidden flex shrink-0 overflow-x-auto rounded-t-lg bg-slate-100 px-2 text-slate-600 dark:bg-navy-800 dark:text-navy-200">
                       <button @click="activeTab = 'tabAll'" :class="activeTab === 'tabAll' ? 'border-primary dark:border-accent text-primary dark:text-accent-light' : 'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'" class="btn shrink-0 rounded-none border-b-2 px-3.5 py-2.5">
@@ -280,7 +282,7 @@ $popularQuestions = [
                   <span class="inline-flex size-2 rounded-full bg-secondary"></span>
                 </span>
               </button>
-              <div :class="isShowPopper &amp;&amp; 'show'" class="popper-root" x-ref="popperRoot" style="position: fixed; inset: 0px 0px auto auto; margin: 0px; transform: translate(15px, 58px);" data-popper-placement="bottom-end">
+              <div :class="isShowPopper && 'show'" class="popper-root" x-ref="popperRoot" style="position: fixed; inset: 0px 0px auto auto; margin: 0px; transform: translate(15px, 58px);" data-popper-placement="bottom-end">
                 <div x-data="{activeTab:'tabAll'}" class="popper-box mx-4 mt-1 flex max-h-[calc(100vh-6rem)] w-[calc(100vw-2rem)] flex-col rounded-lg border border-slate-150 bg-white shadow-soft dark:border-navy-800 dark:bg-navy-700 dark:shadow-soft-dark sm:m-0 sm:w-80">
                   <div class="rounded-t-lg bg-slate-100 text-slate-600 dark:bg-navy-800 dark:text-navy-200">
                     <div class="flex items-center justify-between px-4 pt-2">
