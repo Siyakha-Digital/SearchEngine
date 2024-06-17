@@ -855,7 +855,7 @@
                                 {{-- Iterm 2: --}}
                                 <li>
                                     <a class="group inline-flex items-center space-x-2 tracking-wide outline-none transition-colors hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100"
-                                        href="#">
+                                        href="{{ route('smmes.test') }}">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="size-5 text-slate-400 transition-colors group-hover:text-slate-500 group-focus:text-slate-500 dark:text-navy-300 dark:group-hover:text-navy-200 dark:group-focus:text-navy-200"
                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">

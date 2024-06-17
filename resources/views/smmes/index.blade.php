@@ -1,8 +1,6 @@
 <!-- resources/views/smmes/index.blade.php -->
 @extends('layouts.app', ['slot' => ''])
 
-
-
 @section('title', 'SMMEs')
 
 @section('content')
