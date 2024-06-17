@@ -32,6 +32,11 @@ Route::get('/', function () {
     }
 })->named('home');
 
+// Dashboard route
+Route::get('/dashboard', function () {
+    return view('main_dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
 // Auth routes
 Route::get('/register', function () {
     return view('auth.register');
@@ -88,10 +93,6 @@ Route::resource('smmes', SmmeController::class);
 Route::get('smmescategories', [SmmeController::class, 'index'])->name('smmescategories.index');
 Route::post('smmes/{id}/add-category', [SmmeController::class, 'addCategory'])->name('smmes.add_category');
 Route::post('smmes/{id}/remove-category', [SmmeController::class, 'removeCategory'])->name('smmes.remove_category');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
