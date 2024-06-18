@@ -70,7 +70,7 @@ Route::get('/questions/{question}/edit', [QuestionController::class, 'edit'])->n
 Route::delete('/questions/{question}', [QuestionController::class, 'destroy'])->name('questions.destroy');
 Route::put('/questions/{question}', [QuestionController::class, 'update'])->name('questions.update');
 
-//answer routete
+//answer route
 Route::get('/answers/create', [AnswerController::class, 'create'])->name('answers.create');
 Route::get('/answers/{answer}/edit', [AnswerController::class, 'edit'])->name('answers.edit');
 Route::post('/answers', [AnswerController::class, 'store'])->name('answers.store');
@@ -88,7 +88,7 @@ Route::get('/categories/create', [CategoryController::class, 'create'])->name('c
 // Route::view('/categories/store', 'categories.store')->name('categories.store');
 //smme categories
 
-
+//
 Route::resource('smmes', SmmeController::class);
 Route::get('smmescategories', [SmmeController::class, 'index'])->name('smmescategories.index');
 Route::post('smmes/{id}/add-category', [SmmeController::class, 'addCategory'])->name('smmes.add_category');

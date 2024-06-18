@@ -1,5 +1,5 @@
 <!-- resources/views/smmes/create.blade.php -->
-@extends('layouts.app', ['slot' => ''])
+@extends('layouts.app2', ['slot' => ''])
 
 @section('title', 'Create SMME')
 
@@ -30,3 +30,8 @@
         <button type="submit">Create</button>
     </form>
 @endsection
+
+
+
+
+
