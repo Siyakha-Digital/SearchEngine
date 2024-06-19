@@ -54,6 +54,7 @@ Route::get('/login2', function () {
 // SMME Routes
 Route::get('/smmes', [SMMEController::class, 'index'])->name('smmes.index');
 Route::get('/smmes/create', [SMMEController::class, 'create'])->name('smmes.create');
+Route::get('/smmes/create-test', function(){ return view('smmes.create-test');} )->name('smmes.create-test');
 Route::post('/smmes', [SMMEController::class, 'store'])->name('smmes.store');
 Route::get('/smmes/{smme}', [SMMEController::class, 'show'])->name('smmes.show');
 Route::get('/smmes/{smme}/edit', [SMMEController::class, 'edit'])->name('smmes.edit');

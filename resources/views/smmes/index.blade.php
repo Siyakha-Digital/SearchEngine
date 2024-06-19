@@ -47,7 +47,7 @@ $smmes = [
   <!-- Page Wrapper -->
   <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
 
-    @include('components.navigation-bar')
+    @include('components.top-navigation-bar')
 
       <!-- Main Content Wrapper -->
       <main class="main-content w-full px-[var(--margin-x)] pb-8">
