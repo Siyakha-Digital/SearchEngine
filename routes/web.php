@@ -7,6 +7,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SmmeCategoryController;
+use Illuminate\Support\Facades\Auth;
 
 
 /*
@@ -20,9 +21,36 @@ use App\Http\Controllers\SmmeCategoryController;
 |
 */
 
+// Home route
 Route::get('/', function () {
-    return view('welcome');
-});
+    if (Auth::check()) {
+        // The user is logged in, redirect to dashboard
+        return redirect()->route('dashboard');
+    } else {
+        // The user is not logged in, show the welcome view
+        return redirect()->route('register');
+    }
+})->named('home');
+
+// Dashboard route
+Route::get('/dashboard', function () {
+    return view('main_dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Auth routes
+Route::get('/register', function () {
+    return view('auth.register');
+})->name('register');
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+Route::get('/register2', function () {
+    return view('auth.register2');
+})->name('register2');
+Route::get('/login2', function () {
+    return view('auth.login2');
+})->name('login2');
+
 // SMME Routes
 Route::get('/smmes', [SMMEController::class, 'index'])->name('smmes.index');
 Route::get('/smmes/create', [SMMEController::class, 'create'])->name('smmes.create');
@@ -65,10 +93,6 @@ Route::resource('smmes', SmmeController::class);
 Route::get('smmescategories', [SmmeController::class, 'index'])->name('smmescategories.index');
 Route::post('smmes/{id}/add-category', [SmmeController::class, 'addCategory'])->name('smmes.add_category');
 Route::post('smmes/{id}/remove-category', [SmmeController::class, 'removeCategory'])->name('smmes.remove_category');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
