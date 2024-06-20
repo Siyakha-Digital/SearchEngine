@@ -1,35 +1,68 @@
 <!-- resources/views/smmes/update.blade.php -->
 
-<x-app-weblayout>
-    @section('title', 'Update SMME')
 
-    <div class="container mt-5" style="color: black;">
-        <h1 class="mb-4">Update SMME</h1>
+@extends('layouts.app2')
+@section('content')
 
-        <form action="{{ route('smmes.update', $smme->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-            <div class="mb-3">
-                <label for="name" class="form-label">Name:</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $smme->name }}" required style="background-color: white; border: 1px solid black; color: black;">
-            </div>
-            <div class="mb-3">
-                <label for="category" class="form-label">Category:</label>
-                <input type="text" class="form-control" id="category" name="category" value="{{ $smme->category }}" required style="background-color: white; border: 1px solid black; color: black;">
-            </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">Description:</label>
-                <textarea class="form-control" id="description" name="description" required style="background-color: white; border: 1px solid black; color: black;">{{ $smme->description }}</textarea>
-            </div>
-            <div class="mb-3">
-                <label for="location" class="form-label">Location:</label>
-                <input type="text" class="form-control" id="location" name="location" value="{{ $smme->location }}" required style="background-color: white; border: 1px solid black; color: black;">
-            </div>
-            <div class="mb-3">
-                <label for="contact_info" class="form-label">Contact Info:</label>
-                <input type="text" class="form-control" id="contact_info" name="contact_info" value="{{ $smme->contact_info }}" required style="background-color: white; border: 1px solid black; color: black;">
-            </div>
-            <button type="submit" class="btn btn-primary" style="background-color: black; border-color: black; color: white;">Update</button>
-        </form>
-    </div>
-</x-app-weblayout>
+    <body x-data="" class="is-header-blur" x-bind="$store.global.documentBody">
+        <!-- App preloader-->
+
+        <!-- Page Wrapper -->
+        <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
+
+          @include('components.top-navigation-bar')
+
+            <!-- Main Content Wrapper -->
+            <main class="main-content w-full px-[var(--margin-x)] pb-8">
+                <div class="flex items-center space-x-4 py-5 lg:py-6">
+                  <svg x-ignore="" xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                    <h2 class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-2xl">
+                        Update SMME
+                    </h2>
+                </div>
+
+                <div class="mt-20 grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
+
+                    {{-- Sidebar --}}
+                    @include('components.mini-sidebar-menu')
+
+                    {{-- Main Content: Dashbpard --}}
+                    <div class="flex items-center col-span-12 lg:col-span-8 xl:col-span-9">
+
+                        <form action="{{ route('smmes.update', $smme->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div>
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" value="{{ $smme->name }}" required>
+                            </div>
+                            <div>
+                                <label for="category">Category:</label>
+                                <input type="text" id="category" name="category" value="{{ $smme->category }}" required>
+                            </div>
+                            <div>
+                                <label for="description">Description:</label>
+                                <textarea id="description" name="description" required>{{ $smme->description }}</textarea>
+                            </div>
+                            <div>
+                                <label for="location">Location:</label>
+                                <input type="text" id="location" name="location" value="{{ $smme->location }}" required>
+                            </div>
+                            <div>
+                                <label for="contact_info">Contact Info:</label>
+                                <input type="text" id="contact_info" name="contact_info" value="{{ $smme->contact_info }}" required>
+                            </div>
+                            <button type="submit">Update</button>
+                        </form>
+                           
+                    </div>
+                </div>
+            </main>
+        </div>
+        
+
+    </body>
+@endsection
+

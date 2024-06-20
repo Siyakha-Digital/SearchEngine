@@ -54,6 +54,7 @@ Route::get('/login2', function () {
 // SMME Routes
 Route::get('/smmes', [SMMEController::class, 'index'])->name('smmes.index');
 Route::get('/smmes/create', [SMMEController::class, 'create'])->name('smmes.create');
+Route::get('/smmes/create-test', function(){ return view('smmes.create-test');} )->name('smmes.create-test');
 Route::post('/smmes', [SMMEController::class, 'store'])->name('smmes.store');
 Route::get('/smmes/{smme}', [SMMEController::class, 'show'])->name('smmes.show');
 Route::get('/smmes/{smme}/edit', [SMMEController::class, 'edit'])->name('smmes.edit');
@@ -62,6 +63,7 @@ Route::put('/smmes/{smme}', [SMMEController::class, 'update'])->name('smmes.upda
 
 
 //question route
+Route::get('/faqs', function(){return view('questions.faqs');})->name('faqs');
 Route::get('/questions', [QuestionController::class, 'index'])->name('questions.index');
 Route::get('/questions/create', [QuestionController::class, 'create'])->name('questions.create');
 Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
@@ -70,7 +72,7 @@ Route::get('/questions/{question}/edit', [QuestionController::class, 'edit'])->n
 Route::delete('/questions/{question}', [QuestionController::class, 'destroy'])->name('questions.destroy');
 Route::put('/questions/{question}', [QuestionController::class, 'update'])->name('questions.update');
 
-//answer routete
+//answer route
 Route::get('/answers/create', [AnswerController::class, 'create'])->name('answers.create');
 Route::get('/answers/{answer}/edit', [AnswerController::class, 'edit'])->name('answers.edit');
 Route::post('/answers', [AnswerController::class, 'store'])->name('answers.store');
@@ -88,7 +90,7 @@ Route::get('/categories/create', [CategoryController::class, 'create'])->name('c
 // Route::view('/categories/store', 'categories.store')->name('categories.store');
 //smme categories
 
-
+//
 Route::resource('smmes', SmmeController::class);
 Route::get('smmescategories', [SmmeController::class, 'index'])->name('smmescategories.index');
 Route::post('smmes/{id}/add-category', [SmmeController::class, 'addCategory'])->name('smmes.add_category');
@@ -99,5 +101,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// create search page route
+Route::get('/search', function () {
+    return view('search');
+})->name('search');
 
 require __DIR__.'/auth.php';
