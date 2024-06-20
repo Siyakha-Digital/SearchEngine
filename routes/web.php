@@ -102,9 +102,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// create search page route
+// Search Results page route
 Route::get('/search', function () {
-    return view('search');
-})->name('search');
+    return view('search.index');
+})->name('search.index');
 
 require __DIR__.'/auth.php';

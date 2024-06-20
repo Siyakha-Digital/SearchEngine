@@ -12,17 +12,23 @@ $popularSearches = [
     // Add more popular searches as needed
 ];
 ?>
-<!-- App Header Wrapper-->
+
+
 <nav class="header before:bg-white dark:before:bg-navy-750 print:hidden">
     <!-- App Header  -->
-    <div class="header-container relative flex w-full bg-white dark:bg-navy-700 print:hidden">
+    <div class="header-container relative flex w-full bg-white dark:bg-navy-700 print:hidden sm:flex-col">
         <!-- Header Items -->
-        <div class="flex w-full items-center justify-center">
+        <div class="flex w-full items-center justify-between sm:h-16">
+
+            <div class="hidden items-center space-x-2 sm:flex">
+                <span class="text-xl font-semibold text-slate-700 dark:text-navy-100">
+                    YowzaSearch
+                </span>
+            </div>
 
             <!-- Right: Header buttons -->
             <div class="-mr-1.5 flex items-center space-x-2">
-
-                <!-- Main Search Toggle -->
+                <!-- Mobile Search Toggle -->
                 <button @click="$store.global.isSearchbarActive = !$store.global.isSearchbarActive"
                     class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 sm:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" class="size-5.5 text-slate-500 dark:text-navy-100"
@@ -82,12 +88,24 @@ $popularSearches = [
                     </div>
                 </template>
 
+
+                <!-- Right Sidebar Toggle -->
+                <button @click="$store.global.isRightSidebarExpanded = true"
+                    class="btn size-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5.5 text-slate-500 dark:text-navy-100"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                        </path>
+                    </svg>
+                </button>
             </div>
         </div>
 
-    
-    
+
+        <!-- Header Navigation -->
+        @include('components.header-nav')
+
     </div>
 
-    
 </nav>
