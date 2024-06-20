@@ -63,6 +63,7 @@ Route::put('/smmes/{smme}', [SMMEController::class, 'update'])->name('smmes.upda
 
 
 //question route
+Route::get('/faqs', function(){return view('questions.faqs');})->name('faqs');
 Route::get('/questions', [QuestionController::class, 'index'])->name('questions.index');
 Route::get('/questions/create', [QuestionController::class, 'create'])->name('questions.create');
 Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
@@ -100,5 +101,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// create search page route
+Route::get('/search', function () {
+    return view('search');
+})->name('search');
 
 require __DIR__.'/auth.php';
