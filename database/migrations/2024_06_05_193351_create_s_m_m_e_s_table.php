@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('s_m_m_e_s', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('category');
-            $table->text('description');
-            $table->string('location');
-            $table->string('contact_info');
+            $table->string('slogan'); // Adding the slogan field
+            $table->string('image'); // Adding the image field
+            $table->json('category');
             $table->timestamps();
         });
     }
