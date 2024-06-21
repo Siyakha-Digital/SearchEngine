@@ -13,7 +13,6 @@ class Category extends Model
 
     public function smmes()
     {
-        return $this->belongsToMany(Smme::class, 'smme_categories');
+        return $this->belongsToMany(SMME::class, 'smme_categories');
     }
 }
-

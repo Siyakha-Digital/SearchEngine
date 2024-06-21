@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('s_m_m_e_s', function (Blueprint $table) {
+        Schema::create('search_logs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slogan'); // Adding the slogan field
-            $table->string('image'); // Adding the image field
-            $table->json('category');
-            //$table->string('contact_details');
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('s_m_m_e_s');
+        Schema::dropIfExists('search_logs');
     }
 };
