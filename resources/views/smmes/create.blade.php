@@ -65,7 +65,7 @@
                                     @enderror
                                 </label>
 
-                                {{-- Category --}}
+                                
                                 <label class="block">
                                     <span>Category</span>
                                     <span class="relative mt-1.5 flex">
@@ -122,21 +122,40 @@
                                     @enderror
                                 </label>
 
-                                <div>
-                                    <label for="image">Image:</label>
-                                    <input type="file" id="image" name="image" required>
-                                </div>
+                                 {{-- Image --}}
+                                 <label class="block">
+                                    <span>Image</span>
+                                    <span class="relative mt-1.5 flex">
+                                        <input
+                                            class="form-input peer w-9/12 rounded-full border border-slate-300 px-3 py-2 pl-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                            type="file" id="image" name="image"
+                                            value="{{ old('image') }}" required>
+                                    </span>
+                                    @error('image')
+                                        <span class="text-sm text-error">{{ $message }}</span>
+                                    @enderror
+                                </label>
 
-                                <div>
-                                    <label for="category">Category:</label>
-                                    <select id="category" name="category[]" multiple required>
-                                        <option value="Food & Beverages">Food & Beverages</option>
-                                        <option value="Fashion">Fashion</option>
-                                        <option value="Construction">Construction</option>
-                                        <option value="Technology">Technology</option>
-                                        <!-- Add other categories as needed -->
-                                    </select>
-                                </div>
+                                {{-- Category --}}
+                                {{-- Category --}}
+<label class="block">
+    <span>Category</span>
+    <span class="relative mt-1.5 flex">
+        <select
+            class="form-input peer w-9/12 rounded-lg border border-slate-300 px-3 py-2 pl-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent custom-select"
+            id="category" name="category[]" multiple required>
+            <option value="Food & Beverages">Food & Beverages</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Construction">Construction</option>
+            <option value="Technology">Technology</option>
+            <!-- Add other categories as needed -->
+        </select>
+    </span>
+    @error('category')
+        <span class="text-sm text-error">{{ $message }}</span>
+    @enderror
+</label>
+
 
                                 {{-- Create Button --}}
                                 <div class="flex justify-start">
@@ -158,4 +177,21 @@
         </div>
 
     </body>
+
+    <style>
+        .custom-select {
+            background-color: white;
+            color: black;
+            border-color: black;
+        }
+        .custom-select:focus {
+            border-color: black;
+            outline: none;
+            box-shadow: none;
+        }
+        .custom-select option {
+            background-color: white;
+            color: black;
+        }
+    </style>
 @endsection
