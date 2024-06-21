@@ -1,18 +1,12 @@
 <?php
-namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Auth\Controller;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SMMEController;
-
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SmmeCategoryController;
-use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -29,15 +23,6 @@ use Illuminate\Support\Facades\Auth;
 
 // Home route
 Route::get('/', function () {
-    return view('welcome');
-});
-
-//google auth route
-Route::get('/auth/google/redirect', [Controller::class, 'redirectToGoogle']);
-Route::get('/auth/callback', [Controller::class, 'handleGoogleCallback']);
-
-    
-
     if (Auth::check()) {
         // The user is logged in, redirect to dashboard
         return redirect()->route('dashboard');
