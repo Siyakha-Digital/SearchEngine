@@ -16,9 +16,9 @@ $popularSearches = [
 
 <nav class="header before:bg-white dark:before:bg-navy-750 print:hidden">
     <!-- App Header  -->
-    <div class="header-container relative flex w-full bg-white dark:bg-navy-700 print:hidden sm:flex-col">
+    <div class="header-container relative flex w-full bg-white dark:bg-navy-700 print:hidden sm:flex-col ">
         <!-- Header Items -->
-        <div class="flex w-full items-center justify-between sm:h-16">
+        <div class="flex w-full items-center justify-between sm:h-16 space-y-2 ">
 
             <div class="hidden items-center space-x-2 sm:flex">
                 <span class="text-xl font-semibold text-slate-700 dark:text-navy-100">
