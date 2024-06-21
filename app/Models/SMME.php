@@ -10,9 +10,8 @@ class SMME extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'category',
-        'description',
-        'location',
-        'contact_info',
+        'slogan',
+        'image',
+        'category', 
     ];
 }

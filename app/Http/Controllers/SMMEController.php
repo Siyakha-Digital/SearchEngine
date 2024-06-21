@@ -9,13 +9,13 @@ class SMMEController extends Controller
 {
     public function index()
     {
-        $smmes = Smme::all();
+        $smmes = SMME::all();
         return view('smmes.index', compact('smmes'));
     }
 
     public function show($id)
     {
-        $smme = Smme::findOrFail($id);
+        $smme = SMME::findOrFail($id);
         return view('smmes.show', compact('smme'));
     }
 
@@ -28,19 +28,31 @@ class SMMEController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'category' => 'required',
-            'description' => 'required',
-            'location' => 'required',
-            'contact_info' => 'required',
+            'slogan' => 'required',
+            'image' => 'required|image', // Added validation for image file
+            'category' => 'required|array', // Ensuring category is an array
+            'category.*' => 'required|string' // Ensuring each category is a string
         ]);
 
-        $smme = Smme::create($request->all());
+        // Handle file upload
+        $imagePath = $request->file('image')->store('images', 'public');
+
+        $smme = SMME::create([
+            'name' => $request->name,
+            'slogan' => $request->slogan,
+            'image' => $imagePath,
+            'category' => json_encode($request->category), // Encode category array to JSON
+            'description' => $request->description,
+            // 'location' => $request->location,
+            // 'contact_info' => $request->contact_info
+        ]);
+
         return redirect()->route('smmes.index')->with('success', 'SMME created successfully.');
     }
 
     public function edit($id)
     {
-        $smme = Smme::findOrFail($id);
+        $smme = SMME::findOrFail($id);
         return view('smmes.edit', compact('smme'));
     }
 
@@ -48,20 +60,35 @@ class SMMEController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'category' => 'required',
-            'description' => 'required',
-            'location' => 'required',
-            'contact_info' => 'required',
+            'slogan' => 'required',
+            'image' => 'nullable|image', // Optional image validation
+            'category' => 'required|array', // Ensuring category is an array
+            'category.*' => 'required|string' // Ensuring each category is a string
         ]);
 
-        $smme = Smme::findOrFail($id);
-        $smme->update($request->all());
+        $smme = SMME::findOrFail($id);
+
+        // Handle file upload if a new image is uploaded
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $smme->image = $imagePath;
+        }
+
+        $smme->update([
+            'name' => $request->name,
+            'slogan' => $request->slogan,
+            'category' => json_encode($request->category), // Encode category array to JSON
+            'description' => $request->description,
+            // 'location' => $request->location,
+            // 'contact_info' => $request->contact_info
+        ]);
+
         return redirect()->route('smmes.index')->with('success', 'SMME updated successfully.');
     }
 
     public function destroy($id)
     {
-        $smme = Smme::findOrFail($id);
+        $smme = SMME::findOrFail($id);
         $smme->delete();
         return redirect()->route('smmes.index')->with('success', 'SMME deleted successfully.');
     }
