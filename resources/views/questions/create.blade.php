@@ -26,9 +26,6 @@
 
                 <div class="mt-20 grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
 
-                    {{-- Sidebar --}}
-                    @include('components.mini-sidebar-menu')
-
                     {{-- Main Content: Dashbpard --}}
                     <div class="flex items-center col-span-12 lg:col-span-8 xl:col-span-9">
 
