@@ -13,5 +13,8 @@ class SMME extends Model
         'slogan',
         'image',
         'category', 
+        'description',
+        'location',
+        'contact_info',
     ];
 }

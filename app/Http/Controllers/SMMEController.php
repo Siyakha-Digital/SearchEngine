@@ -43,8 +43,8 @@ class SMMEController extends Controller
             'image' => $imagePath,
             'category' => json_encode($request->category), // Encode category array to JSON
             'description' => $request->description,
-            // 'location' => $request->location,
-            // 'contact_info' => $request->contact_info
+            'location' => $request->location,
+            'contact_info' => $request->contact_info
         ]);
 
         return redirect()->route('smmes.index')->with('success', 'SMME created successfully.');
@@ -63,7 +63,9 @@ class SMMEController extends Controller
             'slogan' => 'required',
             'image' => 'nullable|image', // Optional image validation
             'category' => 'required|array', // Ensuring category is an array
-            'category.*' => 'required|string' // Ensuring each category is a string
+            'description' => 'required|max:65535',
+            'location' => 'required',
+            'contact_info' => 'required',
         ]);
 
         $smme = SMME::findOrFail($id);
@@ -79,8 +81,8 @@ class SMMEController extends Controller
             'slogan' => $request->slogan,
             'category' => json_encode($request->category), // Encode category array to JSON
             'description' => $request->description,
-            // 'location' => $request->location,
-            // 'contact_info' => $request->contact_info
+            'location' => $request->location,
+            'contact_info' => $request->contact_info
         ]);
 
         return redirect()->route('smmes.index')->with('success', 'SMME updated successfully.');

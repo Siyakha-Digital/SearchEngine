@@ -17,7 +17,7 @@
                 <path fill="currentColor"
                     d="M17.5 5h-1a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5Z"></path>
             </svg>
-            <span>Search Dashboard</span>
+            <span>Your Search Dashboard</span>
         </button>
     </a>
 
