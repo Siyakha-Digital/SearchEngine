@@ -5,7 +5,7 @@
         "This file is @generated automatically"
     ],
     "content-hash": "63f594b7cd9911ac38a9e06e49b088c9",
-    "content-hash": "05d7d5bcc07e8abb7ac7a15bad99c557",
+    //"content-hash": "05d7d5bcc07e8abb7ac7a15bad99c557",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
