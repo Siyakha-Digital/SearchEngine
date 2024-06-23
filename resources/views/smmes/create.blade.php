@@ -151,6 +151,7 @@
                                             <option value="Fashion">Fashion</option>
                                             <option value="Construction">Construction</option>
                                             <option value="Technology">Technology</option>
+                                            <option value="Technology">Other</option>
                                             <!-- Add other categories as needed -->
                                         </select>
                                     </span>
