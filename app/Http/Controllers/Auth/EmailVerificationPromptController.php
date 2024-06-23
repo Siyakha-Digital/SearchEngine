@@ -1,15 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-use Illuminate\Routing\Controller as BaseController;
 
+use App\Http\Controllers\Controller; // Import the correct Controller class
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-
-class EmailVerificationPromptController extends BaseController
+class EmailVerificationPromptController extends Controller
 {
     /**
      * Display the email verification prompt.
