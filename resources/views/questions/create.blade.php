@@ -36,8 +36,62 @@
                         </div>
                     </form>
                 </div>
-            </div>
-        </main>
-    </div>
-</body>
+
+                <div class="mt-20 grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
+
+                    {{-- Main Content: Ask a question --}}
+                    <div class="flex items-center col-span-12 lg:col-span-8 xl:col-span-9">
+   
+                        <form action="{{ route('questions.store') }}" method="POST" class="w-full space-y-5"
+                            >
+                            @csrf
+
+                         {{-- Form Container --}}
+                         <div class="mt-4 space-y-5">
+
+                            {{-- Error Message --}}
+                            @if ($errors->any())
+                                <div class="text-sm text-error">
+                                    <strong>Oops! There were some problems with your submission. Please check the form
+                                        below for errors.</strong>
+                                </div>
+                            @endif
+
+                            {{-- Success Message --}}
+                            @if (session('success'))
+                                <div class="text-sm text-success">
+                                    <strong>{{ session('success') }}</strong>
+                                </div>
+                            @endif
+
+                            {{-- Question --}}
+                            <label class="block">
+                                <span>Question</span><br>
+                                <textarea
+                                    class="form-textarea mt-1.5 w-full rounded-2xl border border-slate-300 p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                    id="question_text" name="question_text" rows="10" maxlength="65535"
+                                    placeholder="Enter your question here. Be as detailed as possible.">{{ old('question') }}</textarea><br>
+                                @error('question_text')
+                                    <span class="text-sm text-error">{{ $message }}</span>
+                                @enderror
+                            </label>
+
+                            {{-- Ask Question Button --}}
+                            <div class="flex justify-start">
+                                <button
+                                    class="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+                                    type="submit">
+                                    Ask Question
+                                </button>
+                            </div>
+
+                        </div>
+                     
+                    </div>
+                </div>
+            </main>
+        </div>
+
+
+    </body>
 @endsection

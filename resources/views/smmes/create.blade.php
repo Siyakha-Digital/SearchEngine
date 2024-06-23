@@ -41,10 +41,6 @@
                                         <strong>Oops! There were some problems with your submission. Please check the form
                                             below for errors.</strong>
                                     </div>
-                                    <ul class="mt-2 text-sm text-error list-disc list-inside">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
                                 @endif
 
                                 {{-- Success Message --}}
@@ -151,6 +147,7 @@
                                             <option value="Fashion">Fashion</option>
                                             <option value="Construction">Construction</option>
                                             <option value="Technology">Technology</option>
+                                            <option value="Technology">Other</option>
                                             <!-- Add other categories as needed -->
                                         </select>
                                     </span>
