@@ -49,7 +49,14 @@
                                 <label for="answer_text">Your Answer:</label>
                                 <textarea id="answer_text" name="answer_text" required></textarea>
                             </div>
-                            <button type="submit">Submit Answer</button>
+                             {{-- Submit Answer Button --}}
+                             <div class="flex justify-start">
+                                <button
+                                    class="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+                                    type="submit">
+                                    Submit Answer
+                                </button>
+                            </div>
                         </form>
 
                         <a href="{{ route('questions.index') }}">Back to Questions</a>

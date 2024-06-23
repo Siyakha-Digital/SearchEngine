@@ -30,28 +30,154 @@
                         <form action="{{ route('smmes.update', $smme->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <div>
-                                <label for="name">Name:</label>
-                                <input type="text" id="name" name="name" value="{{ $smme->name }}" required>
+                
+                              {{-- Form Container --}}
+                              <div class="mt-4 space-y-5">
+
+                                {{-- Error Message --}}
+                                @if ($errors->any())
+                                    <div class="text-sm text-error">
+                                        <strong>Oops! There were some problems with your submission. Please check the form
+                                            below for errors.</strong>
+                                    </div>
+                                @endif
+
+                                {{-- Show specific error --}}
+                                
+                                
+
+                                {{-- Success Message --}}
+                                @if (session('success'))
+                                    <div class="text-sm text-success">
+                                        <strong>{{ session('success') }}</strong>
+                                    </div>
+                                @endif
+
+                                {{-- Name --}}
+                                <label class="block">
+                                    <span>Name</span>
+                                    <span class="relative mt-1.5 flex">
+                                        <input
+                                            class="form-input peer w-9/12 rounded-full border border-slate-300 px-3 py-2 pl-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                            type="text" id="name" name="name"
+                                            placeholder="Enter your SMME's name .." value="{{ $smme->name }}"
+                                            maxlength="50">
+                                    </span>
+                                    @error('name')
+                                        <span class="text-sm text-error">{{ $message }}</span>
+                                    @enderror
+                                </label>
+
+                                {{-- Slogan --}}
+                                <label class="block">
+                                    <span>Slogan</span>
+                                    <span class="relative mt-1.5 flex">
+                                        <input
+                                            class="form-input peer w-9/12 rounded-full border border-slate-300 px-3 py-2 pl-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                            type="text" id="slogan" name="slogan"
+                                            placeholder="Enter your SMME's slogan .." value="{{ $smme->slogan }}"
+                                            maxlength="50">
+                                    </span>
+                                    @error('slogan')
+                                        <span class="text-sm text-error">{{ $message }}</span>
+                                    @enderror
+                                </label>
+
+                                {{-- Location --}}
+                                <label class="block">
+                                    <span>Location</span>
+                                    <span class="relative mt-1.5 flex">
+                                        <input
+                                            class="form-input peer w-9/12 rounded-full border border-slate-300 px-3 py-2 pl-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                            type="text" id="location" name="location"
+                                            placeholder="Enter your SMME's location .." value="{{ $smme->location }}"
+                                            maxlength="50" required>
+                                    </span>
+                                    @error('location')
+                                        <span class="text-sm text-error">{{ $message }}</span>
+                                    @enderror
+                                </label>
+
+                                {{-- Contact Info --}}
+                                <label class="block">
+                                    <span>Contact Info</span>
+                                    <span class="relative mt-1.5 flex">
+                                        <input
+                                            class="form-input peer w-9/12 rounded-full border border-slate-300 px-3 py-2 pl-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                            type="text" id="contact_info" name="contact_info"
+                                            placeholder="Enter your SMME's contact info .."
+                                            value="{{ $smme->contact_info }} maxlength="50" required>
+                                    </span>
+                                    @error('contact_info')
+                                        <span class="text-sm text-error">{{ $message }}</span>
+                                    @enderror
+                                </label>
+
+                                {{-- Description --}}
+                                <label class="block">
+                                    <span>Description</span><br>
+                                    <textarea
+                                        class="form-textarea mt-1.5 w-full rounded-2xl border border-slate-300 p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                        id="description" name="description" rows="10" maxlength="65535"
+                                        placeholder="Enter the description of your SMME here. Be as detailed as possible.">{{ $smme->description }}</textarea><br>
+                                    @error('description')
+                                        <span class="text-sm text-error">{{ $message }}</span>
+                                    @enderror
+                                </label>
+
+                                {{-- Image --}}
+                                <label class="block">
+                                    <span>Change Previous Image</span>
+                                    <span class="relative mt-1.5 flex">
+                                        <input
+                                            class="form-input peer w-9/12 rounded-full border border-slate-300 px-3 py-2 pl-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+                                            type="file" id="image" name="image" accept="image/*" value="{{ $smme->image }}"
+                                            >
+                                    </span>
+                                    @error('image')
+                                        <span class="text-sm text-error">{{ $message }}</span>
+                                    @enderror
+                                </label>
+
+                                {{-- Category --}}
+                                <label class="block">
+                                    <span>Category</span>
+                                    <span class="relative mt-1.5 flex">
+                                        <select
+                                            class="form-input peer w-9/12 rounded-lg border border-slate-300 px-3 py-2 pl-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent custom-select"
+                                            id="category" name="category[]" multiple required>
+                                            @php
+                                            $selectedCategories = old('category', $smme->category ?? []);
+                                            @endphp
+                                            <option value="Food & Beverages" @if(in_array("Food & Beverages", $selectedCategories)) selected @endif>Food & Beverages</option>
+                                            <option value="Fashion" @if(in_array("Fashion", $selectedCategories)) selected @endif>Fashion</option>
+                                            <option value="Construction" @if(in_array("Construction", $selectedCategories)) selected @endif>Construction</option>
+                                            <option value="Technology" @if(in_array("Technology", $selectedCategories)) selected @endif>Technology</option>
+                                            <option value="Other" @if(in_array("Other", $selectedCategories)) selected @endif>Other</option>
+                                            <!-- Add other categories as needed -->
+                                        </select>
+                                    </span>
+                                    @error('category')
+                                        <span class="text-sm text-error">{{ $message }}</span>
+                                    @enderror
+                                </label>
+
+
+                                {{-- Create Button --}}
+                                <div class="flex justify-start">
+                                    <button
+                                        class="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+                                        type="submit">
+                                        Update 
+                                    </button>
+                                </div>
+
                             </div>
-                            <div>
-                                <label for="category">Category:</label>
-                                <input type="text" id="category" name="category" value="{{ $smme->category }}" required>
-                            </div>
-                            <div>
-                                <label for="description">Description:</label>
-                                <textarea id="description" name="description" required>{{ $smme->description }}</textarea>
-                            </div>
-                            <div>
-                                <label for="location">Location:</label>
-                                <input type="text" id="location" name="location" value="{{ $smme->location }}" required>
-                            </div>
-                            <div>
-                                <label for="contact_info">Contact Info:</label>
-                                <input type="text" id="contact_info" name="contact_info" value="{{ $smme->contact_info }}" required>
-                            </div>
-                            <button type="submit">Update</button>
+
+                            
                         </form>
+
+
                            
                     </div>
                 </div>

@@ -40,7 +40,8 @@ class SMMEController extends Controller
         $smme = SMME::create([
             'name' => $request->name,
             'slogan' => $request->slogan,
-            'image' => $imagePath,
+            // Conditionally require the image only if it's a create operation or an image is being uploaded during update
+            'image' => (request()->isMethod('post') || request()->hasFile('image')) ? 'required|image' : 'nullable|image',
             'category' => json_encode($request->category), // Encode category array to JSON
             'description' => $request->description,
             'location' => $request->location,
@@ -53,6 +54,8 @@ class SMMEController extends Controller
     public function edit($id)
     {
         $smme = SMME::findOrFail($id);
+         // Decode the categories for the view
+        $smme->category = json_decode($smme->category, true);
         return view('smmes.edit', compact('smme'));
     }
 
