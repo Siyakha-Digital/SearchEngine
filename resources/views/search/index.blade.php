@@ -2,6 +2,8 @@
 @section('content')
 
 <?php
+
+// Example search results: For results pulled from the internet (If none are found from the system)
 $searchResults = [
   [
     'title' => 'How to Register Your Business as an SMME in South Africa',
@@ -54,7 +56,6 @@ $searchResults = [
     'url' => 'https://sacci.org.za/sme-development/' // Replace with actual URL
   ],
 ];
-
 ?>
 
     <body x-data="" class="is-header-blur" x-bind="$store.global.documentBody">

@@ -58,7 +58,15 @@
             here
           </a>
           .
-        </p>
+        </p><br><br>
+
+        <p class="pt-3">
+            See other's people's questions and answers. You can also help answer other people's questions by providing detailed and accurate answers.
+            <a href="{{ route('questions.index') }}" class="tag rounded-full border border-primary text-primary dark:border-accent-light dark:text-accent-light">
+              here
+            </a>
+            .
+          </p>
 
                     {{-- Question Ask/Search Bar --}}
                     {{-- <div class="relative mt-6 w-full max-w-md">
