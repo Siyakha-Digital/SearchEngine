@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Auth\Controller;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SMMEController;
@@ -37,16 +37,13 @@ Route::get('/auth/google/redirect', [Controller::class, 'redirectToGoogle']);
 Route::get('/auth/callback', [Controller::class, 'handleGoogleCallback']);
 
     
-
-    if (Auth::check()) {
-        // The user is logged in, redirect to dashboard
-        return redirect()->route('dashboard');
+Route::get('/', function () {
+    if (auth()->check()) {
+        return view('dashboard');
     } else {
-        // The user is not logged in, show the welcome view
         return redirect()->route('register');
     }
-})->named('home');
-
+})->name('home');
 // Dashboard route
 Route::get('/dashboard', function () {
     return view('main_dashboard');
