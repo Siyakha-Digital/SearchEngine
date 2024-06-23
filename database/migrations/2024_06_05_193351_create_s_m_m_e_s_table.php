@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('slogan'); // Adding the slogan field
             $table->string('image'); // Adding the image field
             $table->json('category');
+            $table->longText('description');
+            $table->string('location');
+            $table->string('contact_info');
             $table->timestamps();
         });
     }

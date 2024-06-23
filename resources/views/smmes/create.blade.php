@@ -29,7 +29,7 @@
                         </div> --}}
 
                         {{-- Form --}}
-                        <form action="{{ route('smmes.store') }}" method="POST">
+                        <form action="{{ route('smmes.store') }}" method="POST"  enctype="multipart/form-data">
                             @csrf
 
                             {{-- Form Container --}}
@@ -41,6 +41,10 @@
                                         <strong>Oops! There were some problems with your submission. Please check the form
                                             below for errors.</strong>
                                     </div>
+                                    <ul class="mt-2 text-sm text-error list-disc list-inside">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
                                 @endif
 
                                 {{-- Success Message --}}
@@ -65,17 +69,17 @@
                                     @enderror
                                 </label>
 
-                                
+                                {{-- Slogan --}}
                                 <label class="block">
-                                    <span>Category</span>
+                                    <span>Slogan</span>
                                     <span class="relative mt-1.5 flex">
                                         <input
                                             class="form-input peer w-9/12 rounded-full border border-slate-300 px-3 py-2 pl-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                            type="text" id="category" name="category"
-                                            placeholder="Enter your SMME's category .." value="{{ old('category') }}"
-                                            maxlength="50" required>
+                                            type="text" id="slogan" name="slogan"
+                                            placeholder="Enter your SMME's slogan .." value="{{ old('slogan') }}"
+                                            maxlength="50">
                                     </span>
-                                    @error('category')
+                                    @error('slogan')
                                         <span class="text-sm text-error">{{ $message }}</span>
                                     @enderror
                                 </label>
@@ -115,21 +119,21 @@
                                     <span>Description</span><br>
                                     <textarea
                                         class="form-textarea mt-1.5 w-full rounded-2xl border border-slate-300 p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                        id="description" name="description" rows="10" maxlength="10000"
+                                        id="description" name="description" rows="10" maxlength="65535"
                                         placeholder="Enter the description of your SMME here. Be as detailed as possible.">{{ old('description') }}</textarea><br>
                                     @error('description')
                                         <span class="text-sm text-error">{{ $message }}</span>
                                     @enderror
                                 </label>
 
-                                 {{-- Image --}}
-                                 <label class="block">
+                                {{-- Image --}}
+                                <label class="block">
                                     <span>Image</span>
                                     <span class="relative mt-1.5 flex">
                                         <input
                                             class="form-input peer w-9/12 rounded-full border border-slate-300 px-3 py-2 pl-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-                                            type="file" id="image" name="image"
-                                            value="{{ old('image') }}" required>
+                                            type="file" id="image" name="image" accept="image/*"
+                                            required>
                                     </span>
                                     @error('image')
                                         <span class="text-sm text-error">{{ $message }}</span>
@@ -137,24 +141,23 @@
                                 </label>
 
                                 {{-- Category --}}
-                                {{-- Category --}}
-<label class="block">
-    <span>Category</span>
-    <span class="relative mt-1.5 flex">
-        <select
-            class="form-input peer w-9/12 rounded-lg border border-slate-300 px-3 py-2 pl-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent custom-select"
-            id="category" name="category[]" multiple required>
-            <option value="Food & Beverages">Food & Beverages</option>
-            <option value="Fashion">Fashion</option>
-            <option value="Construction">Construction</option>
-            <option value="Technology">Technology</option>
-            <!-- Add other categories as needed -->
-        </select>
-    </span>
-    @error('category')
-        <span class="text-sm text-error">{{ $message }}</span>
-    @enderror
-</label>
+                                <label class="block">
+                                    <span>Category</span>
+                                    <span class="relative mt-1.5 flex">
+                                        <select
+                                            class="form-input peer w-9/12 rounded-lg border border-slate-300 px-3 py-2 pl-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent custom-select"
+                                            id="category" name="category[]" multiple required>
+                                            <option value="Food & Beverages">Food & Beverages</option>
+                                            <option value="Fashion">Fashion</option>
+                                            <option value="Construction">Construction</option>
+                                            <option value="Technology">Technology</option>
+                                            <!-- Add other categories as needed -->
+                                        </select>
+                                    </span>
+                                    @error('category')
+                                        <span class="text-sm text-error">{{ $message }}</span>
+                                    @enderror
+                                </label>
 
 
                                 {{-- Create Button --}}
@@ -184,11 +187,13 @@
             color: black;
             border-color: black;
         }
+
         .custom-select:focus {
             border-color: black;
             outline: none;
             box-shadow: none;
         }
+
         .custom-select option {
             background-color: white;
             color: black;
