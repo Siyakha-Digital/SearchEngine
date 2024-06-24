@@ -3,8 +3,75 @@
 
 <?php
 
+// Example search results: For results pulled from the system (These will come from Laravel Scout)
+$smmeSearchResults = [
+  [
+    "id" => 1,
+    "name" => "MIMO",
+    "slogan" => "The only spices you know",
+    "category" => ["Food & Beverages"],
+    "description" => "Siyabonga's Business is a proudly South African wholesale and retail spice company offering a variety of unique and flavorful spices.",
+    "location" => "Gauteng, Johannesburg",
+    "contact_info" => "+27 11 (256) 9811"
+  ],
+  [
+    "id" => 2,
+    "name" => "Karabo's Business",
+    "slogan" => "We offer bags and more",
+    "category" => ["Fashion"],
+    "description" => "Karabo's Corner: Your One-Stop Shop for Sustainable Bags and Accessories",
+    "location" => "Limpopo, Maganeng",
+    "contact_info" => "+27 11 (346) 6780"
+  ],
+  [
+    "id" => 3,
+    "name" => "MaThings",
+    "slogan" => "Your go to bags",  // Consider updating with a more relevant slogan based on actual description
+    "category" => ["Fashion"],
+    "description" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",  // Replace with actual description
+    "location" => "Gauteng, Tokoza",
+    "contact_info" => "+27 11 567 8906"
+  ],
+  [
+    "id" => 4,
+    "name" => "Themba's Tech Fix",
+    "slogan" => "We keep your tech alive",
+    "category" => ["Technology"],
+    "description" => "Themba's Tech Fix is your one-stop shop for all your tech needs. We offer expert repair services for laptops, smartphones, tablets, and more. We also sell a variety of new and pre-owned devices.",
+    "location" => "Pretoria, Gauteng, South Africa",
+    "contact_info" => "+27 12 345 2198"
+  ],
+  [
+    "id" => 5,
+    "name" => "Khwezi Clothing",
+    "slogan" => "Wearable stories. Sustainable style.",
+    "category" => ["Fashion"],
+    "description" => "Khwezi Clothing designs and creates unique, ethically-made clothing and accessories. We use traditional African fabrics and techniques to celebrate South African culture and empower local artisans.",
+    "location" => "Stellenbosch, Western Cape, South Africa",
+    "contact_info" => "+27 21 880 0976; khwezi@clothing.co.za"
+  ],
+  [
+    "id" => 6,
+    "name" => "Recycle & Reuse",
+    "slogan" => "Giving things a second chance, for a greener future",
+    "category" => ["Construction"],  // Consider a more relevant category like "Recycling"
+    "description" => "Relebohile's Recycle & Reuse is passionate about protecting the environment. We offer a convenient and responsible way to recycle and upcycle unwanted items, while also providing unique, second-hand treasures.",
+    "location" => "Durban, KwaZulu-Natal, South Africa",
+    "contact_info" => "+27 31 337 5420"
+  ],
+  [
+    "id" => 7,
+    "name" => "Flavor Kitchen",
+    "slogan" => "A taste of home, made with love.",
+    "category" => ["Food & Beverages"],
+    "description" => "Nthabi's Kitchen is a homegrown business serving up delicious and authentic African cuisine. We use fresh, locally sourced ingredients to create traditional dishes with a modern twist.",
+    "location" => "Soweto, Johannesburg, South Africa",
+    "contact_info" => "+27 11 494 7896"
+  ],
+];
+
 // Example search results: For results pulled from the internet (If none are found from the system)
-$searchResults = [
+$internetSearchResults = [
   [
     'title' => 'How to Register Your Business as an SMME in South Africa',
     'description' => 'A step-by-step guide on registering your business as an SMME in South Africa, including information on eligibility requirements and the registration process.',
@@ -58,54 +125,65 @@ $searchResults = [
 ];
 ?>
 
-    <body x-data="" class="is-header-blur" x-bind="$store.global.documentBody">
-        <!-- App preloader-->
+<body x-data="" class="is-header-blur" x-bind="$store.global.documentBody">
+    <!-- App preloader -->
 
-        <!-- Page Wrapper -->
-        <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
+    <!-- Page Wrapper -->
+    <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
 
-            @include('components.top-navigation-bar')
+        @include('components.top-navigation-bar')
 
-            <!-- Main Content Wrapper -->
-            <main class="main-content w-full px-[var(--margin-x)] pb-8">
-                <div class="flex items-center space-x-4 py-5 lg:py-6">
-                    <svg x-ignore="" xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                    </svg>
-                    <h2 class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-2xl">
-                        Search Results
-                    </h2>
-                </div>
+        <!-- Main Content Wrapper -->
+        <main class="main-content w-full px-[var(--margin-x)] pb-8">
+            <div class="flex items-center space-x-4 py-5 lg:py-6">
+                <svg x-ignore="" xmlns="http://www.w3.org/2000/svg" class="size-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+                <h2 class="text-xl font-medium text-slate-800 dark:text-navy-50 lg:text-2xl">
+                    Search Results
+                </h2>
+            </div>
 
-                <div class="mt-20 grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
-
-                    {{-- Main Content: Dashbpard --}}
-                    <div class="flex items-center col-span-12 lg:col-span-8 xl:col-span-9">
-
-                        <div class="mt-6">
-                            @if(count($searchResults))
-                                <div class="space-y-4">
-                                    @foreach($searchResults as $result)
-                                        <div class="p-4 bg-white dark:bg-gray-800 shadow rounded-lg">
-                                            <h3 class="text-lg font-medium text-gray-900 dark:text-white">
-                                                <a href="{{ $result['url'] }}" class="hover:underline">{{ $result['title'] }}</a>
-                                            </h3>
-                                            <p class="mt-1 text-gray-600 dark:text-gray-400">{{ Str::limit($result['description'], 250, '...') }}</p>
-                                        </div>
-                                    @endforeach
+            <div class="mt-20 space-y-4">
+                <div class="space-y-4">
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-white"><em> System Results ... </em></h3>
+                    @if(count($smmeSearchResults))
+                        <div class="space-y-4">
+                            @foreach($smmeSearchResults as $smme)
+                                <div class="p-4 bg-white dark:bg-gray-800 shadow rounded-lg">
+                                    <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+                                        <a href="{{ route('smmes.show', ['smme' => $smme['id']]) }}" class="hover:underline">{{ $smme['name'] }}</a>
+                                    </h3>
+                                    <p class="mt-1 text-gray-600 dark:text-gray-400">{{ Str::limit($smme['description'], 250, '...') }}</p>
                                 </div>
-                            @else
-                                <p class="text-gray-600 dark:text-gray-400">No results found. Try adjusting your search.</p>
-                            @endif
+                            @endforeach
                         </div>
-                     
-                    </div>
+                    @else
+                        <p class="text-gray-600 dark:text-gray-400">No results found from the SMMEs list. Try adjusting your search.</p>
+                    @endif
                 </div>
-            </main>
-        </div>
 
+                <div class="space-y-4">
+                    <h3 class="text-lg font-medium text-gray-900 dark:text-white"><em>Internet Results ...</em></h3>
+                    @if(count($internetSearchResults))
+                        <div class="space-y-4">
+                            @foreach($internetSearchResults as $result)
+                                <div class="p-4 bg-white dark:bg-gray-800 shadow rounded-lg">
+                                    <h3 class="text-lg font-medium text-gray-900 dark:text-white">
+                                        <a href="{{ $result['url'] }}" class="hover:underline">{{ $result['title'] }}</a>
+                                    </h3>
+                                    <p class="mt-1 text-gray-600 dark:text-gray-400">{{ Str::limit($result['description'], 250, '...') }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <p class="text-gray-600 dark:text-gray-400">No results found from the internet. Try adjusting your search.</p>
+                    @endif
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
 
-    </body>
-    
 @endsection

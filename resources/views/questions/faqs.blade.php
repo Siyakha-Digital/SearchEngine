@@ -2,7 +2,7 @@
 @section('content')
     <?php
     
-    // Example Frequently Asked Questions
+    // Example Frequently Asked Questions (Insert Question from the backend from a database or API)
     $frequentlyAskedQuestionsAndAnswers = [
     ['question' => 'What is classified as an SMME?', 'answer' => 'In South Africa, an SMME is classified based on the number of employees, annual turnover, and the sector in which the business operates. The classification ranges from micro-enterprises to small and medium enterprises.'],
     ['question' => 'What is the role of SMMEs in the South African economy?', 'answer' => 'SMMEs play a vital role in the South African economy by creating jobs, fostering innovation, and contributing significantly to GDP. They help reduce poverty and inequality by providing employment opportunities and driving economic growth.'],
