@@ -2,7 +2,7 @@
 @section('content')
     <?php
     
-    // Example Frequently Asked Questions
+    // Example Frequently Asked Questions (Insert Question from the backend from a database or API)
     $frequentlyAskedQuestionsAndAnswers = [
     ['question' => 'What is classified as an SMME?', 'answer' => 'In South Africa, an SMME is classified based on the number of employees, annual turnover, and the sector in which the business operates. The classification ranges from micro-enterprises to small and medium enterprises.'],
     ['question' => 'What is the role of SMMEs in the South African economy?', 'answer' => 'SMMEs play a vital role in the South African economy by creating jobs, fostering innovation, and contributing significantly to GDP. They help reduce poverty and inequality by providing employment opportunities and driving economic growth.'],
@@ -58,7 +58,15 @@
             here
           </a>
           .
-        </p>
+        </p><br><br>
+
+        <p class="pt-3">
+            See other's people's questions and answers. You can also help answer other people's questions by providing detailed and accurate answers.
+            <a href="{{ route('questions.index') }}" class="tag rounded-full border border-primary text-primary dark:border-accent-light dark:text-accent-light">
+              here
+            </a>
+            .
+          </p>
 
                     {{-- Question Ask/Search Bar --}}
                     {{-- <div class="relative mt-6 w-full max-w-md">
